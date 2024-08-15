@@ -34,7 +34,7 @@ class PlateauSizeParserTest {
 
         PlateauSize expected = new PlateauSize(0, 0);
 
-        assertEquals(expected, output)
+        assertEquals(expected, output);
     }
 
     @Test
