@@ -18,8 +18,8 @@ class PlateauSizeParserTest {
         PlateauSize expected = new PlateauSize(0, 0);
 
         assertAll(
-                () -> assertEquals(expected, nullOutput),
-                () -> assertEquals(expected, emptyOutput)
+                () -> assertEquals(expected.toString(), nullOutput.toString()),
+                () -> assertEquals(expected.toString(), emptyOutput.toString())
         );
     }
 
@@ -34,7 +34,7 @@ class PlateauSizeParserTest {
 
         PlateauSize expected = new PlateauSize(0, 0);
 
-        assertEquals(expected, output);
+        assertEquals(expected.toString(), output.toString());
     }
 
     @Test
@@ -53,9 +53,9 @@ class PlateauSizeParserTest {
         PlateauSize expected3 = new PlateauSize(1, 1);
 
         assertAll(
-                () -> assertEquals(expected1, output1),
-                () -> assertEquals(expected2, output2),
-                () -> assertEquals(expected3, output3)
+                () -> assertEquals(expected1.toString(), output1.toString()),
+                () -> assertEquals(expected2.toString(), output2.toString()),
+                () -> assertEquals(expected3.toString(), output3.toString())
         );
     }
 
