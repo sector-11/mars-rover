@@ -5,9 +5,17 @@ import Input.Instruction;
 import Input.Position;
 
 public class Rover {
-    Position position;
+    private Position position;
 
     public Rover(Position position){
+        this.position = position;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
         this.position = position;
     }
 
