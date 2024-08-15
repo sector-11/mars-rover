@@ -11,6 +11,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RoverRotate {
     @Test
+    @DisplayName("Returns current direction when given null instruction")
+    public void testNullInput(){
+        Instruction input = null;
+        Rover testRover = new Rover(new Position(1, 1, Directions.N));
+
+        var output = testRover.rotate(input);
+
+        assertEquals(Directions.N, output);
+    }
+
+    @Test
     @DisplayName("Returns current direction when given invalid instruction")
     public void testInvalidInput(){
         Instruction input = Instruction.M;
@@ -23,7 +34,7 @@ public class RoverRotate {
 
     @Test
     @DisplayName("Returns correct direction for all left rotations")
-    public void testInvalidInput(){
+    public void testLeftRotations(){
         Instruction input = Instruction.L;
         Rover testRoverN = new Rover(new Position(1, 1, Directions.N));
         Rover testRoverS = new Rover(new Position(1, 1, Directions.S));
@@ -45,7 +56,7 @@ public class RoverRotate {
 
     @Test
     @DisplayName("Returns correct direction for all right rotations")
-    public void testInvalidInput(){
+    public void testRightRotations(){
         Instruction input = Instruction.R;
         Rover testRoverN = new Rover(new Position(1, 1, Directions.N));
         Rover testRoverS = new Rover(new Position(1, 1, Directions.S));
