@@ -24,6 +24,10 @@ public class Position {
         return y;
     }
 
+    public String getCoOrdinates(){
+        return "[x: " + x + ", y: " + y + "]";
+    }
+
     public void setCoordinates(int x, int y){
         this.x = x;
         this.y = y;
