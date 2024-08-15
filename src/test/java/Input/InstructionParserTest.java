@@ -56,4 +56,23 @@ class InstructionParserTest {
 
         assertArrayEquals(expected, output);
     }
+
+    @Test
+    @DisplayName("Parser returns empty array when given no good inputs and expected result when given string of inputs with some bad instructions")
+    public void testStringsBadInputs(){
+        String inputSomeGood = "LMABCMRMXYZRMLM";
+        String inputAllBad = "ABCXYZ";
+
+
+        var outputSomeGood = InstructionParser.parse(inputSomeGood);
+        var outputAllBad = InstructionParser.parse(inputAllBad);
+
+        Instruction[] expectedSomeGood = new Instruction[]{Instruction.L, Instruction.M, Instruction.M, Instruction.R, Instruction.M, Instruction.R, Instruction.M, Instruction.L, Instruction.M};
+        Instruction[] expectedAllBad = new Instruction[0];
+
+        assertAll(
+                () -> assertArrayEquals(expectedSomeGood, outputSomeGood),
+                () -> assertArrayEquals(expectedAllBad, outputAllBad)
+        );
+    }
 }
