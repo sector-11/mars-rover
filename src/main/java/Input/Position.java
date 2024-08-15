@@ -15,4 +15,25 @@ public class Position {
     public String toString() {
         return "[x: " + x + ", y: " + y + ". facing: " + facing.name() + "]";
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setCoordinates(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
+    public Directions getFacing() {
+        return facing;
+    }
+
+    public void setFacing(Directions facing) {
+        this.facing = facing;
+    }
 }
