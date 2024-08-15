@@ -10,4 +10,9 @@ public class Position {
         this.y = y;
         this.facing = facing;
     }
+
+    @Override
+    public String toString() {
+        return "[x: " + x + ", y: " + y + ". facing: " + facing.name() + "]";
+    }
 }
