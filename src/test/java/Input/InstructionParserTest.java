@@ -18,8 +18,8 @@ class InstructionParserTest {
         Instruction[] expected = new Instruction[0];
 
         assertAll(
-                () -> assertEquals(expected, nullOutput),
-                () -> assertEquals(expected, emptyOutput)
+                () -> assertArrayEquals(expected, nullOutput),
+                () -> assertArrayEquals(expected, emptyOutput)
         );
     }
 
@@ -39,9 +39,9 @@ class InstructionParserTest {
         Instruction[] mExpected = new Instruction[]{Instruction.M};
 
         assertAll(
-                () -> assertEquals(lExpected, lOutput),
-                () -> assertEquals(rExpected, rOutput),
-                () -> assertEquals(mExpected, mOutput)
+                () -> assertArrayEquals(lExpected, lOutput),
+                () -> assertArrayEquals(rExpected, rOutput),
+                () -> assertArrayEquals(mExpected, mOutput)
         );
     }
 
@@ -54,6 +54,6 @@ class InstructionParserTest {
 
         Instruction[] expected = new Instruction[]{Instruction.L, Instruction.M, Instruction.M, Instruction.R, Instruction.M, Instruction.R, Instruction.M, Instruction.L, Instruction.M};
 
-        assertEquals(expected, output);
+        assertArrayEquals(expected, output);
     }
 }
