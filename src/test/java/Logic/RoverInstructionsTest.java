@@ -43,15 +43,16 @@ public class RoverInstructionsTest {
     public void testExecuteOrders(){
         Plateau plateau = new Plateau(new PlateauSize(2, 2));
         Rover rover = new Rover(new Position(1, 1, Directions.N), plateau);
+        plateau.addEntity(rover);
 
-        Instruction[] instructions = new Instruction[]{Instruction.R, Instruction.M, Instruction.R, Instruction.M};
+        Instruction[] instructions = new Instruction[]{Instruction.R, Instruction.M, Instruction.L, Instruction.M};
 
         boolean receivedInstructions = rover.giveInstructions(instructions);
         rover.executeInstructions(-1);
 
         assertAll(
                 () -> assertTrue(receivedInstructions),
-                () -> assertEquals("[x: 2, y: 2. facing: S]", rover.getPosition().toString())
+                () -> assertEquals("[x: 2, y: 2. facing: N]", rover.getPosition().toString())
         );
     }
 }
