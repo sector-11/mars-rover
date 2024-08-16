@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 
 public class Plateau {
     PlateauSize size;
-    ArrayList<Rover> entities;
+    private final ArrayList<Rover> entities;
 
     public Plateau(PlateauSize size) {
         this.size = size;
@@ -78,5 +78,9 @@ public class Plateau {
         }
 
         return couldAdd;
+    }
+
+    public ArrayList<Rover> getEntities(){
+        return this.entities;
     }
 }
