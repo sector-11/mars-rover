@@ -57,7 +57,10 @@ public class Controller {
 
     public void defaultRun(){
         initializeAll(new String[]{"5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"});
+        System.out.println("STARTING POSITIONS: ");
+        outputAll();
         executeAll();
+        System.out.println("END POSITIONS: ");
         outputAll();
     }
 }
