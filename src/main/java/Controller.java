@@ -54,4 +54,10 @@ public class Controller {
             System.out.println(entity.getPosition().toString());
         }
     }
+
+    public void defaultRun(){
+        initializeAll(new String[]{"5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"});
+        executeAll();
+        outputAll();
+    }
 }
