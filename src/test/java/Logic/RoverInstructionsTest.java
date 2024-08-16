@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RoverInstructionsTest {
     @Test
     @DisplayName("Test rover can reject invalid instructions")
-    public void testReceiveOrders(){
+    public void testReceiveInvalidOrders(){
         Plateau plateau = new Plateau(new PlateauSize(2, 2));
         Rover rover = new Rover(new Position(1, 1, Directions.N));
 
@@ -46,11 +46,11 @@ public class RoverInstructionsTest {
 
         Instruction[] instructions = new Instruction[]{Instruction.R, Instruction.M, Instruction.R, Instruction.M};
 
-        boolean recievedInstructions = rover.giveInstructions(instructions);
+        boolean receivedInstructions = rover.giveInstructions(instructions);
         rover.executeInstructions(-1);
 
         assertAll(
-                () -> assertTrue(recievedInstructions),
+                () -> assertTrue(receivedInstructions),
                 () -> assertEquals("[x: 2, y: 2. facing: S]", rover.getPosition().toString())
         );
     }
