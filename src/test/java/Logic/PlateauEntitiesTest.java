@@ -106,8 +106,8 @@ public class PlateauEntitiesTest {
     @DisplayName("Returns false when attempting to move rover in to occupied place")
     public void testMoveRoverColliding(){
         Plateau plateau = new Plateau(new PlateauSize(2, 2));
-        Rover rover1 = new Rover(new Position(1, 1, Directions.S));
-        Rover rover2 = new Rover(new Position(1, 2, Directions.N));
+        Rover rover1 = new Rover(new Position(1, 2, Directions.S));
+        Rover rover2 = new Rover(new Position(1, 1, Directions.N));
 
         plateau.addEntity(rover1);
         plateau.addEntity(rover2);
