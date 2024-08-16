@@ -42,7 +42,7 @@ public class RoverInstructionsTest {
     @DisplayName("Test rover can execute valid instructions")
     public void testExecuteOrders(){
         Plateau plateau = new Plateau(new PlateauSize(2, 2));
-        Rover rover = new Rover(new Position(1, 1, Directions.N));
+        Rover rover = new Rover(new Position(1, 1, Directions.N), plateau);
 
         Instruction[] instructions = new Instruction[]{Instruction.R, Instruction.M, Instruction.R, Instruction.M};
 
