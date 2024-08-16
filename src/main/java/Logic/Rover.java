@@ -4,11 +4,16 @@ import Input.Directions;
 import Input.Instruction;
 import Input.Position;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Rover {
+    private static final AtomicInteger NEXT_ID = new AtomicInteger(1);
     private Position position;
+    public final int id;
 
     public Rover(Position position){
         this.position = position;
+        this.id = NEXT_ID.getAndIncrement();
     }
 
     public Position getPosition() {
