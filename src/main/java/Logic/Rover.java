@@ -4,16 +4,29 @@ import Input.Directions;
 import Input.Instruction;
 import Input.Position;
 
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Queue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Rover {
     private static final AtomicInteger NEXT_ID = new AtomicInteger(1);
     private Position position;
     public final int id;
+    private Queue<Instruction> instructionsQueue;
+    private Plateau onThisPlateau;
 
     public Rover(Position position){
         this.position = position;
         this.id = NEXT_ID.getAndIncrement();
+        this.instructionsQueue = new ArrayDeque<Instruction>(10);
+    }
+
+    public Rover(Position position, Plateau plateau){
+        this.position = position;
+        this.id = NEXT_ID.getAndIncrement();
+        this.instructionsQueue = new ArrayDeque<Instruction>(10);
+        this.onThisPlateau = plateau;
     }
 
     public Position getPosition() {
@@ -22,6 +35,10 @@ public class Rover {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public void setPlateau(Plateau plateau){
+        this.onThisPlateau = plateau;
     }
 
 
@@ -43,5 +60,23 @@ public class Rover {
         }
 
         return this.position.getFacing();
+    }
+
+    public boolean giveInstructions(Instruction[] input){
+        if (input == null || input.length < 1) return false;
+        return instructionsQueue.addAll(Arrays.asList(input));
+    }
+
+    public void executeInstructions(int numberToExecute){
+        numberToExecute = (numberToExecute < 0 || numberToExecute > instructionsQueue.size()) ? instructionsQueue.size() : numberToExecute;
+        Instruction currentInstruction;
+        for (int i = 0; i < numberToExecute; i++) {
+            currentInstruction = instructionsQueue.poll();
+            switch (currentInstruction){
+                case L, R -> this.rotate(currentInstruction);
+                case M -> onThisPlateau.moveEntity(this);
+                case null -> {/*do nothing*/}
+            }
+        }
     }
 }
