@@ -1,6 +1,8 @@
 package Logic;
 
+import Input.Directions;
 import Input.PlateauSize;
+import Input.Position;
 
 import java.util.ArrayList;
 import java.util.function.Predicate;
@@ -38,6 +40,40 @@ public class Plateau {
     };
 
     public boolean moveEntity(Rover rover){
-        return false;
+        if (rover == null) return false;
+
+        Rover entityToRemove = null;
+
+        for (Rover entity : entities) {
+            if (rover.id == entity.id){
+                entityToRemove = entity;
+            }
+        }
+
+        if (entityToRemove == null) return false;
+        int x = rover.getPosition().getX();
+        int y = rover.getPosition().getY();
+
+        switch (rover.getPosition().getFacing()){
+            case N -> y++;
+            case S -> y--;
+            case E -> x++;
+            case W -> x--;
+        }
+
+        rover.setPosition(new Position(x, y, rover.getPosition().getFacing()));
+
+        boolean couldRemove =  entities.remove(entityToRemove);
+        boolean couldAdd = false;
+
+        if (couldRemove){
+            couldAdd = this.addEntity(rover);
+        }
+
+        if (!couldAdd){
+            entities.add(entityToRemove);
+        }
+
+        return couldAdd;
     }
 }
