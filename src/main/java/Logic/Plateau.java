@@ -24,6 +24,7 @@ public class Plateau {
             if (entity.getPosition().getCoOrdinates().equals(rover.getPosition().getCoOrdinates())) return false;
         }
 
+        rover.setPlateau(this);
         return entities.add(rover);
     }
 
