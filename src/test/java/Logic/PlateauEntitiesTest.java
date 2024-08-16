@@ -94,7 +94,7 @@ public class PlateauEntitiesTest {
     @DisplayName("Returns false when attempting to move rover out of bounds")
     public void testMoveRoverOutOfBounds(){
         Plateau plateau = new Plateau(new PlateauSize(1, 1));
-        Rover rover = new Rover(new Position(0, 0, Directions.N));
+        Rover rover = new Rover(new Position(0, 0, Directions.S));
 
         plateau.addEntity(rover);
         var output = plateau.moveEntity(rover);
