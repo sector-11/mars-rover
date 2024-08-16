@@ -51,6 +51,7 @@ public class Plateau {
         }
 
         if (entityToRemove == null) return false;
+        Position originalPosition = rover.getPosition();
         int x = rover.getPosition().getX();
         int y = rover.getPosition().getY();
 
@@ -72,6 +73,7 @@ public class Plateau {
 
         if (!couldAdd){
             entities.add(entityToRemove);
+            rover.setPosition(originalPosition);
         }
 
         return couldAdd;
