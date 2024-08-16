@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class InstructionParser {
     public static Instruction[] parse(String input){
         if (input == null || input.isBlank()) return new Instruction[0];
+        input = input.toUpperCase();
 
         String[] inputArray = input.split("");
         ArrayList<Instruction> parsedInstructions = new ArrayList<Instruction>();
