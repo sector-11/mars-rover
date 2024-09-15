@@ -1,3 +1,5 @@
+import Input.Instruction;
+import Input.InstructionParser;
 import Input.PlateauSize;
 
 import java.util.Scanner;
@@ -9,6 +11,24 @@ public class ConsoleIOHandler {
 
     Scanner scanner = new Scanner(System.in);
     Controller controller = new Controller();
+
+    public Instruction[] getInstructions(String roverName){
+        String userInputString;
+        boolean shouldContinueLoop = true;
+        do {
+            System.out.println("Please enter instructions for rover " + roverName + ":");
+            userInputString = scanner.nextLine();
+
+            if (!userInputString.matches("^[LlRrMm]*$")){
+                System.out.println("Input must only consist of letters 'L', 'R', or 'M'!");
+                continue;
+            }
+
+            shouldContinueLoop = false;
+        } while (shouldContinueLoop);
+
+        return InstructionParser.parse(userInputString);
+    }
 
     public PlateauSize getPlateauSize (){
         int plateauX, plateauY;
