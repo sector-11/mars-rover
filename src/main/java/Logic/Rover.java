@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Rover {
     private static final AtomicInteger NEXT_ID = new AtomicInteger(1);
+    private String name;
     private Position position;
     public final int id;
     private Queue<Instruction> instructionsQueue;
@@ -25,6 +26,15 @@ public class Rover {
     public Rover(Position position, Plateau plateau){
         this.position = position;
         this.id = NEXT_ID.getAndIncrement();
+        this.name = Integer.toString(id);
+        this.instructionsQueue = new ArrayDeque<Instruction>(10);
+        this.onThisPlateau = plateau;
+    }
+
+    public Rover(Position position, Plateau plateau, String name){
+        this.position = position;
+        this.id = NEXT_ID.getAndIncrement();
+        this.name = name;
         this.instructionsQueue = new ArrayDeque<Instruction>(10);
         this.onThisPlateau = plateau;
     }
@@ -60,6 +70,10 @@ public class Rover {
         }
 
         return this.position.getFacing();
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     public boolean giveInstructions(Instruction[] input){
