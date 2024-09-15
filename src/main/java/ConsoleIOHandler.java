@@ -1,6 +1,4 @@
-import Input.Instruction;
-import Input.InstructionParser;
-import Input.PlateauSize;
+import Input.*;
 
 import java.util.Scanner;
 
@@ -11,6 +9,42 @@ public class ConsoleIOHandler {
 
     Scanner scanner = new Scanner(System.in);
     Controller controller = new Controller();
+
+
+    public Position startingPosition(String roverName, PlateauSize plateauSize){
+        StringBuilder startingPosition = new StringBuilder();
+        System.out.println("\nFor the horizontal starting position of rover " + roverName + ".");
+        startingPosition.append(nextIntBounded(0, plateauSize.getX())).append(" ");
+        System.out.println("\nFor the vertical starting position of rover " + roverName + ".");
+        startingPosition.append(nextIntBounded(0, plateauSize.getY())).append(" ");
+
+        String userInputString;
+        boolean shouldContinueLoop = true;
+        do {
+            System.out.println("Please enter initial direction for rover " + roverName + ":");
+            userInputString = scanner.nextLine();
+
+            if (!userInputString.matches("^(North)$|^(East)$|^(South)$|^(West)$|^[NSEW]$")){
+                System.out.println("Input must only consist of direction 'North', 'East', 'South, or 'West'!");
+                continue;
+            }
+
+            shouldContinueLoop = false;
+        } while (shouldContinueLoop);
+
+        switch (userInputString.toUpperCase()){
+            case "NORTH" -> startingPosition.append("N");
+            case "N" -> startingPosition.append("N");
+            case "SOUTH" -> startingPosition.append("S");
+            case "S" -> startingPosition.append("S");
+            case "EAST" -> startingPosition.append("E");
+            case "E" -> startingPosition.append("E");
+            case "WEST" -> startingPosition.append("W");
+            case "W" -> startingPosition.append("W");
+        }
+
+        return PositionParser.parse(startingPosition.toString());
+    }
 
     public Instruction[] getInstructions(String roverName){
         String userInputString;
