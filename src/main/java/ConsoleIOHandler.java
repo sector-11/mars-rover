@@ -1,5 +1,7 @@
 import Input.*;
 
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -11,6 +13,17 @@ public class ConsoleIOHandler {
     Scanner scanner = new Scanner(System.in);
     Controller controller = new Controller();
 
+    public Optional<ArrayList<String>> roverNames(int roverAmount){
+        if (roverAmount == 0) return Optional.empty();
+        ArrayList<String> nameList = new ArrayList<>();
+
+        for (int i = 0; i < roverAmount; i++) {
+            System.out.println("\nPlease enter a name for rover " + roverAmount + ":");
+            nameList.add(scanner.nextLine());
+        }
+
+        return Optional.of(nameList);
+    }
 
     public Position startingPosition(String roverName, PlateauSize plateauSize){
         StringBuilder startingPosition = new StringBuilder();
