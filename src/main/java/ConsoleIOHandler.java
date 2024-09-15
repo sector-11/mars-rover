@@ -1,6 +1,7 @@
 import Input.*;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class ConsoleIOHandler {
     private final String PLATEAUSIZE_REGEX = "^\\d+ \\d+$";
@@ -24,7 +25,7 @@ public class ConsoleIOHandler {
             System.out.println("Please enter initial direction for rover " + roverName + ":");
             userInputString = scanner.nextLine();
 
-            if (!userInputString.matches("^(North)$|^(East)$|^(South)$|^(West)$|^[NSEW]$")){
+            if (!Pattern.compile("^(North)$|^(East)$|^(South)$|^(West)$|^[NSEW]$", Pattern.CASE_INSENSITIVE).matcher(userInputString).matches()){
                 System.out.println("Input must only consist of direction 'North', 'East', 'South, or 'West'!");
                 continue;
             }
