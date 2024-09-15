@@ -8,6 +8,35 @@ public class ConsoleIOHandler {
     Scanner scanner = new Scanner(System.in);
     Controller controller = new Controller();
 
+    public PlateauSize getPlateauSize (){
+        System.out.println("Please enter a ");
+    }
+
+    public int nextInteger(boolean isPositive){
+        int userInputInt = 0;
+        boolean shouldContinueLoop = true;
+        do {
+            System.out.println("Please enter a " + (isPositive ? "positive integer:" : "integer:"));
+            String userInputString = scanner.nextLine();
+
+            try {
+                userInputInt = Integer.parseInt(userInputString);
+            } catch (NumberFormatException e) {
+                System.out.println("Input must be a whole number only!");
+                continue;
+            }
+
+            if (isPositive && userInputInt < 1){
+                System.out.println("Input must be larger than 0!");
+                continue;
+            }
+
+            shouldContinueLoop = false;
+        } while (shouldContinueLoop);
+
+        return userInputInt;
+    }
+
     public int nextIntBounded(int lowerBound, int upperBound) {
         assert lowerBound < upperBound : "nextIntBounded used with upper bound not being larger than lower bound.";
 
