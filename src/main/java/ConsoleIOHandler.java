@@ -25,6 +25,27 @@ public class ConsoleIOHandler {
         return Optional.of(nameList);
     }
 
+    public boolean yesOrNo(){
+        String userInputString;
+        boolean shouldContinueLoop = true;
+        do {
+            userInputString = scanner.nextLine();
+
+            if (!Pattern.compile("^(Yes)$|^(No)$|^[YN]$", Pattern.CASE_INSENSITIVE).matcher(userInputString).matches()){
+                System.out.println("Input must be 'Yes' or 'No'!");
+                continue;
+            }
+            shouldContinueLoop = false;
+        } while (shouldContinueLoop);
+
+        switch (userInputString.toUpperCase()){
+            case "YES", "Y" -> {return true;}
+            case "NO", "N" -> {return false;}
+        }
+
+        return false;
+    }
+
     public Position startingPosition(String roverName, PlateauSize plateauSize){
         StringBuilder startingPosition = new StringBuilder();
         System.out.println("\nFor the horizontal starting position of rover " + roverName + ".");
