@@ -1,3 +1,5 @@
+import Input.PlateauSize;
+
 import java.util.Scanner;
 
 public class ConsoleIOHandler {
@@ -9,7 +11,15 @@ public class ConsoleIOHandler {
     Controller controller = new Controller();
 
     public PlateauSize getPlateauSize (){
-        System.out.println("Please enter a ");
+        int plateauX, plateauY;
+        System.out.println("You will now define a size for the plateau the rovers will be placed on.");
+        System.out.println("\nThis is for the horizontal size of the plateau.");
+        plateauX = nextInteger(true);
+
+        System.out.println("\nAnd this is for the vertical size of the plateau.");
+        plateauY = nextInteger(true);
+
+        return new PlateauSize(plateauX, plateauY);
     }
 
     public int nextInteger(boolean isPositive){
