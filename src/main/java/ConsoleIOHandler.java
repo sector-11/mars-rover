@@ -68,14 +68,10 @@ public class ConsoleIOHandler {
         } while (shouldContinueLoop);
 
         switch (userInputString.toUpperCase()){
-            case "NORTH" -> startingPosition.append("N");
-            case "N" -> startingPosition.append("N");
-            case "SOUTH" -> startingPosition.append("S");
-            case "S" -> startingPosition.append("S");
-            case "EAST" -> startingPosition.append("E");
-            case "E" -> startingPosition.append("E");
-            case "WEST" -> startingPosition.append("W");
-            case "W" -> startingPosition.append("W");
+            case "NORTH", "N" -> startingPosition.append("N");
+            case "SOUTH", "S" -> startingPosition.append("S");
+            case "EAST", "E" -> startingPosition.append("E");
+            case "WEST", "W" -> startingPosition.append("W");
         }
 
         return PositionParser.parse(startingPosition.toString());
