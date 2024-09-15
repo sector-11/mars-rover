@@ -16,10 +16,19 @@ public class ConsoleIOHandler {
     public Optional<ArrayList<String>> roverNames(int roverAmount){
         if (roverAmount == 0) return Optional.empty();
         ArrayList<String> nameList = new ArrayList<>();
+        String currentName;
 
         for (int i = 0; i < roverAmount; i++) {
-            System.out.println("\nPlease enter a name for rover " + roverAmount + ":");
-            nameList.add(scanner.nextLine());
+            boolean shouldContinueLoop = true;
+            do {
+                System.out.println("\nPlease enter a name for rover " + roverAmount + ":");
+                currentName = scanner.nextLine();
+
+                System.out.println("\nIs the name '" + currentName + "' ok? Y/N:");
+                shouldContinueLoop = !yesOrNo();
+            } while (shouldContinueLoop);
+
+            nameList.add(currentName);
         }
 
         return Optional.of(nameList);
