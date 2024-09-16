@@ -67,7 +67,8 @@ public class Controller {
 
     public void outputAll(){
         for (Rover entity : plateau.getEntities()) {
-            System.out.println(entity.getPosition().toString());
+            System.out.printf(entity.getName() + ": ");
+            System.out.printf(entity.getPosition().toString() + "\n");
         }
     }
 }
