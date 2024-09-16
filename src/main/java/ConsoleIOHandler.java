@@ -6,10 +6,6 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class ConsoleIOHandler {
-    private final String PLATEAUSIZE_REGEX = "^\\d+ \\d+$";
-    private final String POSITION_REGEX = "^\\d+ \\d+ [NEWSnews]$";
-    private final String INSTRUCTION_REGEX = "^[LRMlrm]+$";
-
     Scanner scanner = new Scanner(System.in);
     Controller controller;
 
@@ -108,7 +104,7 @@ public class ConsoleIOHandler {
         String currentName;
 
         for (int i = 0; i < roverAmount; i++) {
-            boolean shouldContinueLoop = true;
+            boolean shouldContinueLoop;
             do {
                 System.out.println("\nPlease enter a name for rover " + (i + 1) + ":");
                 currentName = scanner.nextLine();

@@ -20,14 +20,14 @@ public class Rover {
     public Rover(Position position){
         this.position = position;
         this.id = NEXT_ID.getAndIncrement();
-        this.instructionsQueue = new ArrayDeque<Instruction>(10);
+        this.instructionsQueue = new ArrayDeque<>(10);
     }
 
     public Rover(Position position, Plateau plateau){
         this.position = position;
         this.id = NEXT_ID.getAndIncrement();
         this.name = Integer.toString(id);
-        this.instructionsQueue = new ArrayDeque<Instruction>(10);
+        this.instructionsQueue = new ArrayDeque<>(10);
         this.onThisPlateau = plateau;
     }
 
@@ -35,7 +35,7 @@ public class Rover {
         this.position = position;
         this.id = NEXT_ID.getAndIncrement();
         this.name = name;
-        this.instructionsQueue = new ArrayDeque<Instruction>(10);
+        this.instructionsQueue = new ArrayDeque<>(10);
         this.onThisPlateau = plateau;
     }
 
