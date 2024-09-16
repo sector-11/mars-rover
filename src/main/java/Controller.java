@@ -10,6 +10,20 @@ public class Controller {
 
     private Plateau plateau;
 
+
+    public Controller(PlateauSize plateauSize, ArrayList<InputRover> rovers) {
+        this.plateau = new Plateau(plateauSize);
+
+        for (InputRover rover : rovers) {
+            Rover currentRover = new Rover(rover.position(), plateau, rover.name());
+            currentRover.giveInstructions(rover.instructions());
+            this.plateau.addEntity(currentRover);
+        }
+    }
+
+    public Controller (){
+    }
+
     public void initializeAll(String[] input){
         if (input == null || input.length < 1) input = new String[]{"0 0"};
 
