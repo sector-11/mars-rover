@@ -83,6 +83,8 @@ public class ConsoleIOHandler {
         for (int i = 0; i < roverAmount; i++) {
             String roverName = namesList.isPresent() ? namesList.get().get(i) : Integer.toString(i + 1);
             Position roverPosition = startingPosition(roverName, plateauSize);
+
+            System.out.println("Instructions are given as a string of letters where 'L' and 'R' are left/right turns, and 'M' is moving one space forward.");
             Instruction[] roverInstructions = getInstructions(roverName);
 
             rovers.add(new InputRover(roverPosition, roverInstructions, roverName));
@@ -151,7 +153,7 @@ public class ConsoleIOHandler {
         String userInputString;
         boolean shouldContinueLoop = true;
         do {
-            System.out.println("Please enter initial direction for rover " + roverName + ":");
+            System.out.println("Please enter initial cardinal direction for rover " + roverName + ":");
             userInputString = scanner.nextLine();
 
             if (!Pattern.compile("^(North)$|^(East)$|^(South)$|^(West)$|^[NSEW]$", Pattern.CASE_INSENSITIVE).matcher(userInputString).matches()){
