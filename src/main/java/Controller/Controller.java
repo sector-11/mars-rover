@@ -1,3 +1,5 @@
+package Controller;
+
 import Logic.*;
 import Input.*;
 
