@@ -13,6 +13,16 @@ public class ConsoleIOHandler {
     Scanner scanner = new Scanner(System.in);
     Controller controller;
 
+    public void run(){
+        System.out.println("   \\  |                     _ \\                       ");
+        System.out.println("  |\\/ |   _` |   _| (_-<      /   _ \\ \\ \\ /  -_)   _| ");
+        System.out.println(" _|  _| \\__,_| _|   ___/   _|_\\ \\___/  \\_/ \\___| _|   ");
+
+        while (true){
+            mainMenu();
+        }
+    }
+
     public void mainMenu(){
         System.out.println("\n---------");
         System.out.println("Main Menu");
