@@ -11,7 +11,67 @@ public class ConsoleIOHandler {
     private final String INSTRUCTION_REGEX = "^[LRMlrm]+$";
 
     Scanner scanner = new Scanner(System.in);
-    Controller controller = new Controller();
+    Controller controller;
+
+    public void demoStart(){
+        PlateauSize size = new PlateauSize(5,5);
+        ArrayList<InputRover> rovers = new ArrayList<>();
+        rovers.add(new InputRover(
+                new Position(1, 2, Directions.N),
+                InstructionParser.parse("LMLMLMLMM"),
+                "Curiosity"));
+        rovers.add(new InputRover(
+                new Position(3, 3, Directions.E),
+                InstructionParser.parse("MMRMMRMRRM"),
+                "Opportunity"));
+
+        controller = new Controller(size, rovers);
+        System.out.println("\nStarting Positions:");
+        controller.outputAll();
+
+        controller.executeAll();
+        System.out.println("\nEnding Positions:");
+        controller.outputAll();
+
+        System.out.println("\nPress enter to continue.");
+        scanner.nextLine();
+    }
+
+    public void customStart(){
+        ArrayList<InputRover> rovers = new ArrayList<>();
+
+        PlateauSize plateauSize = getPlateauSize();
+
+        System.out.println("\nHow many rovers do you want to add? (1 rover minimum)");
+        int roverAmount = nextInteger(true);
+
+        Optional<ArrayList<String>> namesList;
+        System.out.println("\nDo you want to give your rovers names? Y/N:");
+        if (yesOrNo()){
+            namesList = roverNames(roverAmount);
+        } else {
+            namesList = Optional.empty();
+        }
+
+        for (int i = 0; i < roverAmount; i++) {
+            String roverName = namesList.isPresent() ? namesList.get().get(i) : Integer.toString(i + 1);
+            Position roverPosition = startingPosition(roverName, plateauSize);
+            Instruction[] roverInstructions = getInstructions(roverName);
+
+            rovers.add(new InputRover(roverPosition, roverInstructions, roverName));
+        }
+
+        controller = new Controller(plateauSize, rovers);
+        System.out.println("\nStarting Positions:");
+        controller.outputAll();
+
+        controller.executeAll();
+        System.out.println("\nEnding Positions:");
+        controller.outputAll();
+
+        System.out.println("\nPress enter to continue.");
+        scanner.nextLine();
+    }
 
     public Optional<ArrayList<String>> roverNames(int roverAmount){
         if (roverAmount == 0) return Optional.empty();
@@ -30,7 +90,6 @@ public class ConsoleIOHandler {
 
             nameList.add(currentName);
         }
-
         return Optional.of(nameList);
     }
 
