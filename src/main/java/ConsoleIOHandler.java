@@ -13,6 +13,23 @@ public class ConsoleIOHandler {
     Scanner scanner = new Scanner(System.in);
     Controller controller;
 
+    public void mainMenu(){
+        System.out.println("\n---------");
+        System.out.println("Main Menu");
+        System.out.println("---------\n");
+        System.out.println("1) Start");
+        System.out.println("2) Demo");
+        System.out.println("3) Quit");
+        switch (nextIntBounded(1,3)){
+            case 1 -> customStart();
+            case 2 -> demoStart();
+            case 3 -> {
+                System.out.println("Thank you for using this program.");
+                System.exit(0);
+            }
+        }
+    }
+
     public void demoStart(){
         PlateauSize size = new PlateauSize(5,5);
         ArrayList<InputRover> rovers = new ArrayList<>();
