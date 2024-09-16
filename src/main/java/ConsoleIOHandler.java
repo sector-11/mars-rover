@@ -108,7 +108,7 @@ public class ConsoleIOHandler {
         for (int i = 0; i < roverAmount; i++) {
             boolean shouldContinueLoop = true;
             do {
-                System.out.println("\nPlease enter a name for rover " + roverAmount + ":");
+                System.out.println("\nPlease enter a name for rover " + (i + 1) + ":");
                 currentName = scanner.nextLine();
 
                 System.out.println("\nIs the name '" + currentName + "' ok? Y/N:");
