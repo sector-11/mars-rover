@@ -112,6 +112,12 @@ public class ConsoleIOHandler {
                 System.out.println("\nPlease enter a name for rover " + (i + 1) + ":");
                 currentName = scanner.nextLine();
 
+                if (currentName == null || currentName.isBlank()){
+                    System.out.println("You must enter a name!");
+                    shouldContinueLoop = true;
+                    continue;
+                }
+
                 System.out.println("\nIs the name '" + currentName + "' ok? Y/N:");
                 shouldContinueLoop = !yesOrNo();
             } while (shouldContinueLoop);
