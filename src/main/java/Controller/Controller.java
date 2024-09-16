@@ -1,3 +1,5 @@
+package Controller;
+
 import Logic.*;
 import Input.*;
 
@@ -9,6 +11,20 @@ public class Controller {
     private final String INSTRUCTION_REGEX = "^[LRMlrm]+$";
 
     private Plateau plateau;
+
+
+    public Controller(PlateauSize plateauSize, ArrayList<InputRover> rovers) {
+        this.plateau = new Plateau(plateauSize);
+
+        for (InputRover rover : rovers) {
+            Rover currentRover = new Rover(rover.position(), plateau, rover.name());
+            currentRover.giveInstructions(rover.instructions());
+            this.plateau.addEntity(currentRover);
+        }
+    }
+
+    public Controller (){
+    }
 
     public void initializeAll(String[] input){
         if (input == null || input.length < 1) input = new String[]{"0 0"};
@@ -51,16 +67,8 @@ public class Controller {
 
     public void outputAll(){
         for (Rover entity : plateau.getEntities()) {
-            System.out.println(entity.getPosition().toString());
+            System.out.printf(entity.getName() + ": ");
+            System.out.printf(entity.getPosition().toString() + "\n");
         }
-    }
-
-    public void defaultRun(){
-        initializeAll(new String[]{"5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"});
-        System.out.println("STARTING POSITIONS: ");
-        outputAll();
-        executeAll();
-        System.out.println("END POSITIONS: ");
-        outputAll();
     }
 }
